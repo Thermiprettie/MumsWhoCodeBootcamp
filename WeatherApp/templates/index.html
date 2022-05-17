@@ -1,0 +1,85 @@
+<!DOCTYPE html>  
+<html lang="en">  
+{% load static %}  
+  
+<head>  
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   
+  <!-- <link rel = "stylesheet" href="{% static 'weather/templates/static/style.css' %}" /> -->
+  <title>Precise Weather App </title>  
+</head>  
+  
+<body>  
+   
+  <br /><br /> <br>
+  <div class="container-fluid">
+    <!-- Content here -->   
+  <div id="jumbotron" class="text-success" style="text-align: center; margin-top:-50px">  
+    <h1 class="display-5">Precise Weather </h1>  
+    <h4>Backend Development Class Capstone Project</h4>
+    <h6>For MumsWhoCode Digital Women Bootcamp Cohort 3</h6>
+  </div> 
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <form method="post" class="col-md">  
+      {% csrf_token %}  
+      <div class=" input-group">
+      <input class="form-control" type="search" placeholder="Enter a city name" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+    </form>
+  </nav>  
+  <br> <br>  
+  <div class="row">  
+  {% if country_code and coordinate and temp and pressure and humidity %}  
+                <div class="col d-flex justify-content-center" ">  
+                  <table class="table table-hover table-light" style="width: 20rem;" >
+                    <tbody>
+                      <tr>
+                        <th scope="row">City</th>
+                        <td>{{city}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Forecast</th>
+                        <td>{{main}}<img
+                          src="http://openweathermap.org/img/w/{{icon}}.png"
+                          alt = "Image" style="width:70px"?</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Pressure</th>
+                        <td>{{pressure}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Humidity</th>
+                        <td>{{humidity}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Description</th>
+                        <td>{{description}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Temperature</th>
+                        <td>{{temp}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Country Code</th>
+                        <td>{{country_code}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Coordinates [X,Y]</th>
+                        <td>{{coordinate}}</td>
+                      </tr>
+                    </tbody>
+                  </table>  
+        
+          </div>  
+        {% endif %}  
+ </div>  
+</body>  
+  
+</html>
