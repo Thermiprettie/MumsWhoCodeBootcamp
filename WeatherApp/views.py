@@ -6,11 +6,11 @@ import urllib.request  # urllib.request to make a request to api
 
 def index(request):
     if request.method == 'POST':
-        city = request.POST['city']
+        city = request.POST.get('city', True)
 
         # source contain JSON data from API
-        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q='
-                                        + city + '&appid=92324efba4a381bff3ccb50abb8fcf82').read()
+        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' + 
+                                        city + '&units=metric&appid=7b245577692ef04c44b8088b8ebd790d').read()
 
         # converting JSON data to a dictionary
         list_of_data = json.loads(source)
@@ -21,7 +21,7 @@ def index(request):
             "country_code": str(list_of_data['sys']['country']),
             "coordinate": str(list_of_data['coord']['lon']) + ' '
                         + str(list_of_data['coord']['lat']),
-            "temp": str(list_of_data['main']['temp']) + 'k',
+            "temp": str(list_of_data['main']['temp']) + '°C',
             "pressure": str(list_of_data['main']['pressure']),
             "humidity": str(list_of_data['main']['humidity']),
             'main': str(list_of_data['weather'][0]['main']),
